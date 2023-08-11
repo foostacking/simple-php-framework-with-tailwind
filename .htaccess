@@ -1,0 +1,13 @@
+# Enable the RewriteEngine
+RewriteEngine On
+
+# Reroute all file requests to "index.php"
+RewriteRule ^index\.php$ - [L]
+
+# Check if the request doesn't point to an existing directory or file
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Rewrite all other requests to "index.php"
+RewriteRule . index.php [L]
+RewriteRule ^(public|app)?(/.*)?$ index.php [L,QSA]
